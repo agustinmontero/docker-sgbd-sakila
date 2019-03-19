@@ -1,2 +1,5 @@
 #!/bin/bash
+echo ${sakila_file}
+echo ${db_name}
+echo ${DOCKERFILE_PATH}
 docker build --build-arg sakila_file=${sakila_file} db_name=${db_name} -f $DOCKERFILE_PATH -t $IMAGE_NAME .
