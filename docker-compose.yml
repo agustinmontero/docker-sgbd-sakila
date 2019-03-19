@@ -5,7 +5,7 @@ volumes:
 
 services:
   sakila-db:
-    image: sakila:20190319
+    image: agustinmontero/sakila:latest
     build:
       context: sakila
       args:
