@@ -1,0 +1,30 @@
+version: '3.7'
+
+volumes:
+  sakila-vol:
+
+services:
+  sakila-db:
+    image: sakila:20190319
+    build:
+      context: sakila
+      args:
+        - sakila_file=sakila20190319.sql
+        - db_name=sakila
+    restart: unless-stopped
+    env_file:
+      - sakila/sakila-env.env
+    volumes:
+      - sakila-vol:/var/lib/mysql:rw
+    networks:
+      sakila-net:
+        ipv4_address: 192.168.10.10
+
+
+networks:
+  sakila-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
